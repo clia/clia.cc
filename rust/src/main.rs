@@ -5,10 +5,13 @@ use bevy::{color::palettes::basic::*, prelude::*, window::*, winit::WinitSetting
 
 fn main() {
     App::new()
+        // .add_plugins(DefaultPlugins)
         .add_plugins(DefaultPlugins.set(WindowPlugin {
             primary_window: Some(Window {
-                title: "Fullscreen Test".into(),
-                mode: WindowMode::Fullscreen,
+                // title: "Fullscreen Test".into(),
+                // mode: WindowMode::Fullscreen,
+                fit_canvas_to_parent: true,
+                canvas: Some("#bevy".to_string()),
                 ..default()
             }),
             ..default()
