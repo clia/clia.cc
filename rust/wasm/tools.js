@@ -1,4 +1,5 @@
 function getFilename(resource) {
+    console.log(resource);
     const pathname = (typeof resource === 'string')
         ? resource
         : (resource instanceof URL)
@@ -14,6 +15,7 @@ function getFilename(resource) {
 // polled as the fetch completes. See bevy-website/issues/338 for details.
 async function progressiveFetch(resource, callbacks = {}) {
     const filename = getFilename(resource);
+    console.log(filename);
     const cb = Object.assign({
         start: (params) => { },
         update: (params) => { },

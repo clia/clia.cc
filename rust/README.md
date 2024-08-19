@@ -15,3 +15,5 @@ $ mv optimized.wasm wasm/target/playground_bg.wasm
 ```
 
 See: [https://github.com/bevyengine/bevy/tree/main/examples](https://github.com/bevyengine/bevy/tree/main/examples)
+
+See: [https://github.com/bevyengine/bevy/blob/bd8faa7ae17dcd8b4df2beba28876759fb4fdef5/tools/example-showcase/src/main.rs#L698](https://github.com/bevyengine/bevy/blob/bd8faa7ae17dcd8b4df2beba28876759fb4fdef5/tools/example-showcase/src/main.rs#L698)
