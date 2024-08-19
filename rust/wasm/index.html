@@ -37,6 +37,7 @@
           display: none
       }
       .bevy-instance__progress-file {
+          color: #ececec;
           margin-bottom: 4px;
           font-weight: normal;
           text-shadow: 1px 1px 1px #000;
@@ -68,6 +69,15 @@
           animation-name: bg-animation;
           animation-timing-function: linear
       }
+    @keyframes bg-animation {
+        0% {
+            background-position: 0px 0
+        }
+
+        100% {
+            background-position: -26.5px 0
+        }
+    }
       .bevy-instance__canvas {
           width: 100% !important;
           height: auto !important;
