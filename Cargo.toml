@@ -1,38 +1,32 @@
-# Copyright © SixtyFPS GmbH <info@slint.dev>
-# SPDX-License-Identifier: MIT
-
 [package]
-name = "gallery"
-version = "1.9.0"
-authors = ["Slint Developers <info@slint.dev>"]
+name = "r-dashboard"
+version = "0.1.1"
 edition = "2021"
-build = "build.rs"
-license = "MIT"
-publish = false
-description = "Slint Widgets Gallery Example"
 
-[[bin]]
-path = "main.rs"
-name = "gallery"
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-slint = { git = "https://github.com/slint-ui/slint.git", features=["gettext"] }
+dioxus = {version = "0.5", features = ["web", "router"]}
+console_error_panic_hook = "0.1"
+dioxus-html-macro = "0.3"
 
-[build-dependencies]
-slint-build = { git = "https://github.com/slint-ui/slint.git" }
+dioxus-sdk = "*"
 
-# Remove the `#wasm#` to uncomment the wasm build.
-# This is commented out by default because we don't want to build it as a library by default
-# The CI has a script that does sed "s/#wasm# //" to generate the wasm build.
+tracing = "0"
+tracing-wasm = "0"
 
-[lib]
-crate-type = ["cdylib"]
-path = "main.rs"
-#wasm#
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+tokio = {version = "1", features = ["time"]}
+
 [target.'cfg(target_arch = "wasm32")'.dependencies]
-wasm-bindgen = { version = "0.2" }
-web-sys = { version = "0.3", features=["console"] }
-console_error_panic_hook = "0.1.5"
+async-std = "1"
+instant = {version = "^0.1", features = ["wasm-bindgen"]}
 
-[package.metadata.bundle]
-identifier = "com.slint.examples.gallery"
+[profile.release]
+opt-level = 'z'
+lto = true
+strip = true
+
