@@ -61,6 +61,7 @@ fn Body(url: impl AsRef<str>) -> Element {
                         }
                     }
                 }
+                footer::view {}
             }
         }
     }

@@ -9,6 +9,7 @@ use dioxus::signals::{GlobalSignal, Signal};
 pub mod header;
 pub mod menu;
 pub mod sidebar;
+pub mod footer;
 
 // #[derive(Clone, Copy)]
 // struct SidebarOpen(bool);
