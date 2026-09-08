@@ -1,0 +1,56 @@
+//! A simple timer example that implements its own ticker.
+
+use snow_ui::prelude::*;
+
+#[message]
+#[derive(Default)]
+struct SimpleTextTimerTickEvent {}
+
+#[element]
+struct SimpleTextTimer {
+    seconds: State<u128>,
+    timer: IntervalTimer<SimpleTextTimerTickEvent>,
+    text: Text,
+}
+
+register_handler!(
+    impl MessageHandler<SimpleTextTimerTickEvent> for SimpleTextTimer {
+        async fn handle(&mut self, _: &SimpleTextTimerTickEvent, _: &mut MessageContext) {
+            self.seconds.update(|s| *s += 1);
+        }
+    }
+);
+
+fn simple_text_timer() -> Object {
+    let seconds = State::new(0);
+    obj!(SimpleTextTimer {
+        seconds: seconds.clone(),
+        timer: IntervalTimer::from_interval(Duration::from_secs(1)),
+        text: Text::from_state(&seconds),
+    })
+}
+
+pub fn world() -> World {
+    World {
+        root: obj!(Board {
+            children: list![Card {
+                children: list![
+                    Row {
+                        children: list![Text {
+                            text: "Timer Example ⏱️",
+                        },],
+                    },
+                    Row {
+                        children: list![simple_text_timer()],
+                    },
+                ],
+            },],
+        }),
+        ..default()
+    }
+}
+
+#[cfg(not(target_arch = "wasm32"))]
+fn main() {
+    snow_ui::launch(world);
+}
