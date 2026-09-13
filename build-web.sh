@@ -5,6 +5,8 @@ version=${WEB_VERSION:-$(git rev-parse --short HEAD)}
 wasm_target="target/wasm32-unknown-unknown/release/snow_ui_web_example.wasm"
 output_dir="pkg/$version"
 
+rm -rf pkg/*
+
 cargo build \
   --manifest-path Cargo.toml \
   --package snow-ui-web-example \
