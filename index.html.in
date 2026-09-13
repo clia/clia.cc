@@ -50,7 +50,7 @@
 <body>
   <main id="snow-root"></main>
   <script type="module">
-    import init from "./pkg/3ad23a4/snow_ui_web_example.js";
+    import init from "./pkg/__WEB_VERSION__/snow_ui_web_example.js";
 
     init();
   </script>

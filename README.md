@@ -4,19 +4,17 @@ This page provides browser versions of the five Rust examples: click, clock,
 login, lovely girl, and timer. It exercises the `web-sys` renderer on
 `wasm32-unknown-unknown`.
 
-Build the WASM module and generate browser bindings from the workspace root:
+Build the release WASM module and generate versioned browser bindings from the
+workspace root:
 
 ```bash
-cargo build \
-  --manifest-path Cargo.toml \
-  --package snow-ui-web-example \
-  --target wasm32-unknown-unknown
-
-wasm-bindgen \
-  target/wasm32-unknown-unknown/debug/snow_ui_web_example.wasm \
-  --out-dir pkg \
-  --target web
+./build-web.sh
 ```
+
+The script uses the current Git commit as the asset version and writes the JS
+and WASM files under `pkg/<commit>/`. Deploy the generated `index.html` and
+the corresponding `pkg/<commit>/` directory together. Old versioned asset
+directories can remain cacheable indefinitely.
 
 Serve the example over HTTP:
 
